@@ -1,0 +1,109 @@
+<html lang="en">
+<head>
+	<title>Contact V13</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<style>
+/* Split the screen in half */
+
+
+
+
+/* Control the right side */
+.right {
+  right: 0;
+  
+}
+{% comment %} 
+/* If you want the content centered horizontally and vertically */
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+/* Style the image inside the centered container, if needed */
+.centered img {
+  width: 150px;
+  border-radius: 50%;
+} {% endcomment %}
+
+        /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+        #map {
+            height: 90%;
+            
+        }
+        #hello{
+            float:'left';
+        }
+
+        /* Optional: Makes the sample page fill the window. */
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+</style>
+</head>
+
+<body onload="updateLocation();">
+
+
+
+
+
+
+
+<div class="split right">
+
+
+<button >change the location</button>
+    <div id="map"></div>
+    
+    <script>
+        var map;
+        function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: { lat: -34.397, lng: 150.644 },
+                zoom: 1
+            });
+
+        }
+        function updateLocation() {
+         
+          
+          
+            var myLatLng = {lat: 29.354349, lng: 71.691063};
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 15,
+                center: myLatLng
+            });
+
+            var marker = new google.maps.Marker({
+                position: myLatLng,
+                map: map,
+                title: 'Position'
+            });
+            marker.setMap(map);
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDdpNjjfGQav-56Ee4d6TYH1zJSjKAiup0&callback=initMap"
+        async defer></script>
+    <script>
+        CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(30, 10);
+    </script>
+
+    
+  </div>
+</div>
+
+
+
+</body>

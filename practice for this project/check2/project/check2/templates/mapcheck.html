@@ -1,0 +1,107 @@
+{% load static %}
+
+<html lang="en">
+<head>
+	<title>Contact V13</title>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'css/navbarstyle.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+<style>
+
+        /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+       
+        #map {
+            height: 90%;
+            z-index: -1;
+            
+            
+        }
+        #hello{
+            float:'left';
+        }
+
+        /* Optional: Makes the sample page fill the window. */
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+</style>
+</head>
+
+<body onload="updateLocation();">
+    <input type="text" id="lati" placeholder="enter latitude">
+    <input type="text" id="longi" placeholder="enter longitude">
+    <input type="submit" id="submit">
+    <input type="checkbox" id="check">
+    <label for="check">
+      <i class="fas fa-bars" id="btn"></i>
+      <i class="fas fa-times" id="cancel"></i>
+    </label>
+    <div class="sidebar">
+    <header>My App</header>
+  <ul>
+    <li><a href="#"><i class="fas fa-qrcode"></i>Logout</a></li>
+    <li><a href="#"><i class="fas fa-qrcode"></i>Logout</a></li>
+  </ul>
+</div>
+
+<div id="map-wraper">
+    <div id="map" style="margin-left: 80px; "></div>
+</div>
+    <script>
+        var map;
+        function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: { lat: -34.397, lng: 150.644 },
+                zoom: 1
+            });
+
+        }
+        document.getElementById('submit').addEventListener('click',function() {
+            const lati = document.getElementById("lati").value;
+            const longi = document.getElementById("longi").value;
+            console.log(lati, longi)
+            var myLatLng = {lat: 29.354349, lng: 71.691063};
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 15,
+                center: myLatLng
+            } )
+        })
+        function updateLocation() {
+            const lati = document.getElementById("lati");
+            const longi = document.getElementById("longi");
+            console.log(lati, longi)
+            var myLatLng = {lat: 29.354349, lng: 71.691063};
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 15,
+                center: myLatLng
+            });
+
+            var marker = new google.maps.Marker({
+                position: myLatLng,
+                map: map,
+                title: 'Position'
+            });
+            marker.setMap(map);
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDdpNjjfGQav-56Ee4d6TYH1zJSjKAiup0&callback=initMap"
+        async defer></script>
+    <script>
+        CameraUpdate = CameraUpdateFactory.newLatLngBounds(30, 10);
+    </script>
+
+    
+  </div>
+</div>
+
+
+
+</body>

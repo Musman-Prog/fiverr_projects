@@ -1,0 +1,191 @@
+
+
+<html lang="en">
+
+<head>
+    <title>Contact V13</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Compiled and minified CSS -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> -->
+
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+   
+    <!-- <link rel="stylesheet" href="navbarstyle.css"> -->
+
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100vh;
+          }
+          
+          .jumbo {
+            padding-top: 150px;
+            height: 200vh;
+          }
+          
+          .navbar a {
+            color: #131313;
+          }
+          .navbar li.active {
+            background: #ff9900;
+          }
+          .navbar li.active a {
+            color: #fafafa;
+          }
+          .navbar .navbar-toggle .icon-bar {
+            background: #131313;
+          }
+          
+          .shrink .navbar {
+            color: #fafafa;
+            background: #00c6ff;
+            background: linear-gradient(35deg, #00c6ff 10%, #0072ff 90%);
+          }
+          .shrink .navbar-toggle .icon-bar {
+            background: #fafafa;
+          }
+          
+        /* Always set the map height explicitly to define the size of the div
+         * element that contains the map. */
+        #map {
+            height: 100%;
+        }
+
+        /* Optional: Makes the sample page fill the window. */
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+ 
+
+</head>
+
+
+<body>
+ <!-- ###################### navbar section ########################## -->
+ <!-- Fixed navbar -->
+<nav class="navbar navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+        <a class="navbar-brand" href="https://reezhdesign.com">ReeZh Design</a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li class="active"><a href="#">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Action</a></li>
+              <li><a href="#">Another action</a></li>
+              <li><a href="#">Something else here</a></li>
+              <li role="separator" class="divider"></li>
+              <li class="dropdown-header">Nav header</li>
+              <li><a href="#">Separated link</a></li>
+              <li><a href="#">One more separated link</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <!--/.nav-collapse -->
+    </div>
+  </nav>
+  
+  
+    <!-- Main component for a primary marketing message or call to action -->
+   
+          
+  <!-- ###################### navbar section end ##################### -->
+
+
+  <div class="row" style="margin-top: 40px;">
+    <div class="col s9 m8">
+        <div id="map-wraper">
+            <div id="map" style="margin-left: 80px; "></div>
+        </div>
+    </div>
+    <div class="col s3 m4">
+        <div class="card">
+            <div class="card-content white-text">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="latitude" type="text" class="validate">
+                        <label for="latitude">latitude</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="longitude" type="text" class="validate">
+                        <label for="longitude">Longitude</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <a class="waves-effect waves-light btn" type="submit" id="submit">show</a>
+                    </div>
+                    <div class="input-field col s6">
+                        <a class="waves-effect waves-light btn">save</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+         
+      
+        <!-- Compiled and minified JavaScript -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDdpNjjfGQav-56Ee4d6TYH1zJSjKAiup0&callback=initMap"></script>
+        <script src="navbar.js"></script>
+        <script>
+
+
+            var locationRio = { lat: -22.915, lng: -43.197 };
+
+            function initMap(lpcationRio) {
+                var map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 5,
+                    center: locationRio,
+                    gestureHandling: 'cooperative'
+                });
+
+                var marker = new google.maps.Marker({
+                    position: locationRio,
+                    map: map,
+                    title: 'Hello World!'
+                });
+            }
+
+
+            $('#submit').click(() => {
+                const latitude = document.getElementById("latitude").value;
+                const longitude = document.getElementById("longitude").value;
+
+                locationRio = { lat: parseFloat(latitude), lng: parseFloat(longitude) };
+                initMap(locationRio)
+            })
+        </script>
+        
+
+</body>
+<html>

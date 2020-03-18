@@ -1,0 +1,129 @@
+<html lang="en">
+
+<head>
+    <title>Contact V13</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+    <style>
+        /* Always set the map height explicitly to define the size of the div
+         * element that contains the map. */
+        #map {
+            height: 100%;
+        }
+
+        /* Optional: Makes the sample page fill the window. */
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+
+
+<!-- Dropdown Structure -->
+<ul id="dropdown1" class="dropdown-content">
+    <li><a href="#!">one</a></li>
+    <li><a href="#!">two</a></li>
+    <li class="divider"></li>
+    <li><a href="#!">three</a></li>
+  </ul>
+  <nav>
+    <div class="nav-wrapper">
+      <a href="#!" class="brand-logo">Logo</a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="sass.html">Sass</a></li>
+        <li><a href="badges.html">Components</a></li>
+        <!-- Dropdown Trigger -->
+        <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Dropdown<i class="material-icons right">arrow_drop_down</i></a></li>
+      </ul>
+    </div>
+  </nav>
+
+
+
+
+<body>
+    <div class="row" style="margin-top: 40px;">
+        <div class="col s9 m8">
+            <div id="map-wraper">
+                <div id="map" style="margin-left: 80px; "></div>
+            </div>
+        </div>
+        <div class="col s3 m4">
+            <div class="card">
+                <div class="card-content white-text">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="latitude" type="text" class="validate">
+                            <label for="latitude">latitude</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="longitude" type="text" class="validate">
+                            <label for="longitude">Longitude</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <a class="waves-effect waves-light btn" type="submit" id="submit">show</a>
+                        </div>
+                        <div class="input-field col s6">
+                            <a class="waves-effect waves-light btn">save</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDdpNjjfGQav-56Ee4d6TYH1zJSjKAiup0&callback=initMap"></script>
+
+        <!-- Compiled and minified JavaScript -->
+        <script>
+            $(document).ready(function(){
+                $(".dropdown-trigger").dropdown();
+              });
+
+
+            var locationRio = { lat: -22.915, lng: -43.197 };
+
+            function initMap(lpcationRio) {
+                var map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 5,
+                    center: locationRio,
+                    gestureHandling: 'cooperative'
+                });
+
+                var marker = new google.maps.Marker({
+                    position: locationRio,
+                    map: map,
+                    title: 'Hello World!'
+                });
+            }
+
+
+            $('#submit').click(() => {
+                const latitude = document.getElementById("latitude").value;
+                const longitude = document.getElementById("longitude").value;
+
+                locationRio = { lat: parseFloat(latitude), lng: parseFloat(longitude) };
+                initMap(locationRio)
+            })
+        </script>
+    </div>
+    </div>
+
+
+
+</body>
